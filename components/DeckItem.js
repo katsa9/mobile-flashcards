@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-class NewDeck extends Component {
+export function DeckItem() {
 
-  render() {
     return (
       <View>
-        <Text>New Deck</Text>
+        <Text>DeckItem</Text>
       </View>
     )
-  }
 }
-
-export default NewDeck
