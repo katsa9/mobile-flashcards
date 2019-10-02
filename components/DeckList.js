@@ -11,7 +11,12 @@ class DeckList extends Component {
   render() {
     return (
       <View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate(
+              'Deck',
+              {/* { deckId: key } */}
+            )}>
         <Text>DeckList</Text>
+        </TouchableOpacity>
       </View>
     )
   }
