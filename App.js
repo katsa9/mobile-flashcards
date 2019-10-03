@@ -4,7 +4,7 @@ import DeckList from './components/DeckList'
 import DeckItem from './components/DeckItem'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
-import { createBottomTabNavigator } from 'react-navigation-tabs' 
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { FontAwesome } from '@expo/vector-icons'
@@ -36,7 +36,7 @@ const TabNavigatorConfig = {
     header: null
   },
   tabBarOptions: {
-    activeTintColor:  purple,
+    activeTintColor: purple,
     style: {
       height: 56,
       backgroundColor: white,
@@ -52,43 +52,13 @@ const TabNavigatorConfig = {
 };
 const TabNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
 
-function CustomStatusBar ({backgroundColor, ...props}) {
+function CustomStatusBar ({ backgroundColor, ...props }) {
   return (
     <View style={{ backgroundColor, height: 50 }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   )
 }
-
-const DeckOptionsNavigator = createStackNavigator({
-  DeckItem: {
-    screen: DeckItem,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
-  },
-  NewCard: {
-    screen: NewCard,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
-  },
-  StartQuiz: {
-    screen: QuizView,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
-  },
-})
 
 const MainNavigator = createAppContainer(createStackNavigator({
   Home: {
@@ -127,12 +97,14 @@ const MainNavigator = createAppContainer(createStackNavigator({
   },
 }));
 
-export default function App() {
+export default function App () {
   return (
-   <View style={{flex:1}}> 
+    <Provider store={createStore(reducer, {decks: []})}>
+      <View style={{ flex: 1 }}>
         <CustomStatusBar backgroundColor={purple} barStyle="light-content" />
-      <MainNavigator />
-    </View>
+        <MainNavigator />
+      </View>
+    </Provider>
   );
 }
 
