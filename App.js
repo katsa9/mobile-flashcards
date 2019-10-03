@@ -10,6 +10,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { FontAwesome } from '@expo/vector-icons'
 import { purple, white, lightPurp } from './utils/colors'
 import QuizView from './components/QuizView';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 const RouteConfigs = {
   DeckList: {
