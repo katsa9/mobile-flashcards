@@ -19,9 +19,11 @@ class NewDeck extends Component {
 
   onSubmit = () => {
     const { deckName } = this.state
-
+    const deck = {
+      title: deckName
+    }
     this.props.dispatch(addDeck({
-      deckName
+      deck
     }))
     
     

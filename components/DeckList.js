@@ -11,7 +11,7 @@ class DeckList extends Component {
   }
 
   render() {
-    const { decks } = this.props
+    const { items } = this.props
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate(
@@ -19,11 +19,19 @@ class DeckList extends Component {
               {/* { deckId: key } */}
             )}>
         <Text>DeckList</Text>
-         { decks && decks.forEach(element => {
-          <Text>{element}</Text>
-          })
-          }
         </TouchableOpacity>
+        <View style={styles.container}>
+
+        {items.map((item) => {
+        return (
+          <View style={styles.deck} key={item.title}>
+              <Text style={{fontSize: 20}}>
+                {item.title}
+              </Text>
+          </View>
+        )
+      })}
+      </View>
       </View>
     )
   }
@@ -36,12 +44,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15
   },
+  heading: {
+    paddingTop: 30,
+    marginBottom: 40,
+    color: purple,
+    fontSize: 36,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  deck: {
+    flexDirection: 'row',
+    marginTop: 12
+  },
 })
 
-function mapStateToProps({decks}) {
-  const items = Object.values(decks)
+function mapStateToProps(state) {
+  console.log("state: ", state)
+  const items = Object.values(state)
+  console.log("DEcks: ", items)
   return {
-    decks: items
+    items
   }
 }
 export default connect(mapStateToProps)(DeckList)
