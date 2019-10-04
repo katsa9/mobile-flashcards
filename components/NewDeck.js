@@ -51,7 +51,7 @@ class NewDeck extends Component {
         <TouchableOpacity
           style={styles.submitBtn}
           onPress={this.onSubmit}>
-          <Text style={styles.submitBtnText}>SUBMIT</Text>
+          <Text style={styles.submitBtnText}>Create</Text>
         </TouchableOpacity>
       </View>
     )
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     color: white,
-    fontSize: 22,
-    textAlign: 'center'
+    fontSize: 20,
+    textAlign: 'center',
   },
   textInput: {
     height: 40,
