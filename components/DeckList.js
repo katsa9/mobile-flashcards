@@ -21,9 +21,7 @@ class DeckList extends Component {
                 { deckId: item.title }
               )}
               key={item.title}>
-                {/* <View style={styles.deck} key={item.title}> */}
                   <DeckPanel deckId={item.title}/>
-                {/* </View> */}
               </TouchableOpacity>
             )
           })}
@@ -37,8 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     padding: 15,
-    // justifyContent: "flex-start",
-    // alignItems: 'center'
   },
   heading: {
     color: purple,
