@@ -29,10 +29,10 @@ function mapStateToProps (state, { deckId }) {
 const styles = StyleSheet.create({
   container: {
     // flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 15,
+    marginHorizontal: 15,
     backgroundColor: purple,
     borderRadius: 8,
-    marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },

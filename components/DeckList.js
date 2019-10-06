@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import DeckPanel from './DeckPanel'
 import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
@@ -13,19 +13,19 @@ class DeckList extends Component {
   render () {
     const { items } = this.props
     return (
-      <View style={styles.container}>
-          {items.map((item) => {
-            return (
-              <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                'Deck',
-                { deckId: item.title }
-              )}
-              key={item.title}>
-                  <DeckPanel deckId={item.title}/>
-              </TouchableOpacity>
-            )
-          })}
-      </View>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={items}
+          renderItem={({ item }) => (<TouchableOpacity onPress={() => this.props.navigation.navigate(
+            'Deck',
+            { deckId: item.title }
+          )}
+            key={item.title}>
+            <DeckPanel deckId={item.title} />
+          </TouchableOpacity>)}
+          keyExtractor={item => item.title}
+        />
+      </SafeAreaView>
     )
   }
 }
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  
+
 })
 
 function mapStateToProps (state) {
