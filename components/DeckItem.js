@@ -21,7 +21,7 @@ class DeckItem extends Component {
         style={styles.newCardBtn}
         onPress={() => this.props.navigation.navigate(
               'NewCard',
-              { deckId: key }
+              { deckId: display.title }
             )}>
         <Text style={styles.newCardBtnText}>Create New Card</Text>
         </TouchableOpacity>
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
 function mapStateToProps (state, { navigation }) {
   const { deckId } = navigation.state.params
   const deck = state[deckId]
-  console.log("Deck item: ", deck)
   return {
     display: deck
   }
