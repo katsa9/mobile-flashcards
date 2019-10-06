@@ -16,20 +16,22 @@ class DeckItem extends Component {
      return (
       <View style={styles.container}>
       <DeckPanel deckId={display.title}/>
-      <View>
-      <TouchableOpacity onPress={() => this.props.navigation.navigate(
+      <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.newCardBtn}
+        onPress={() => this.props.navigation.navigate(
               'NewCard',
-              {/* { deckId: key } */}
+              { deckId: key }
             )}>
-        <Text>Create New Card</Text>
+        <Text style={styles.newCardBtnText}>Create New Card</Text>
         </TouchableOpacity>
-        </View>
-        <View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate(
+        <TouchableOpacity 
+          style={styles.startQuizBtn}
+          onPress={() => this.props.navigation.navigate(
               'StartQuiz',
               {/* { deckId: key } */}
             )}>
-        <Text>Start Quiz</Text>
+        <Text style={styles.startQuizBtnText}>Start Quiz</Text>
         </TouchableOpacity>
         </View>
       </View>
@@ -42,6 +44,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     padding: 15,
+  },
+  newCardBtn: {
+    marginTop: 40,
+    borderColor: purple,
+    borderWidth: 1,
+    backgroundColor: white,
+    padding: 10,
+    borderRadius: 7,
+    height: 45,
+    marginLeft: 40,
+    marginRight: 40
+  },
+  newCardBtnText: {
+    color: purple,
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  startQuizBtn: {
+    marginTop: 40,
+    backgroundColor: purple,
+    padding: 10,
+    borderRadius: 7,
+    height: 45,
+    marginLeft: 40,
+    marginRight: 40
+  },
+  startQuizBtnText: {
+    color: white,
+    fontSize: 20,
+    textAlign: 'center',
   },
 })
 

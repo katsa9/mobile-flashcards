@@ -81,6 +81,7 @@ const MainNavigator = createAppContainer(createStackNavigator({
     screen: NewCard,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
+      title: "Add Card",
       headerStyle: {
         backgroundColor: purple,
       },
@@ -90,6 +91,7 @@ const MainNavigator = createAppContainer(createStackNavigator({
     screen: QuizView,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
+      title: "Quiz",
       headerStyle: {
         backgroundColor: purple,
       },
