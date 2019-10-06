@@ -38,20 +38,19 @@ class NewCard extends Component {
   }
 
   backToDeck = () => {
-    this.props.navigation.dispatch(NavigationActions.back({key: 'Deck'}))
+    this.props.navigation.goBack()
   }
 
   render() {
+    const { question, answer } = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.inputLabel}>Question</Text>
         <TextInput style={styles.textInput}
           onChangeText={text => this.onQuestionChanged(text)}
           value={this.state.question}
           placeholder="Enter your question"
           placeholderTextColor={lightPurp}
         />
-        <Text style={styles.inputLabel}>Answer</Text>
         <TextInput style={styles.textInput}
           onChangeText={text => this.onAnswerChanged(text)}
           value={this.state.answer}
@@ -60,7 +59,8 @@ class NewCard extends Component {
         />
         <TouchableOpacity
           style={styles.submitBtn}
-          onPress={this.onSubmit}>
+          onPress={this.onSubmit}
+          disabled={question === '' || answer === ''}>
           <Text style={styles.submitBtnText}>Add Card</Text>
         </TouchableOpacity>
       </View>
@@ -72,12 +72,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 15
-  },
-  inputLabel: {
-    color: purple,
-    fontSize: 14,
   },
   submitBtn: {
     marginTop: 40,
@@ -100,7 +96,8 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     alignSelf: 'stretch',
     textAlign: 'center',
-    color: purple
+    color: purple,
+    marginBottom: 20,
   },
 });
 

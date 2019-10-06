@@ -23,7 +23,7 @@ class DeckItem extends Component {
               'NewCard',
               { deckId: display.title }
             )}>
-        <Text style={styles.newCardBtnText}>Create New Card</Text>
+        <Text style={styles.newCardBtnText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.startQuizBtn}

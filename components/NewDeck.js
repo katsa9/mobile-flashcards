@@ -8,7 +8,7 @@ import { addDeck } from '../actions'
 class NewDeck extends Component {
 
   state = {
-    deckName: null
+    deckName: ''
   }
 
   onTextChanged = (text) => {
@@ -51,7 +51,8 @@ class NewDeck extends Component {
         />
         <TouchableOpacity
           style={styles.submitBtn}
-          onPress={this.onSubmit}>
+          onPress={this.onSubmit}
+          disabled={this.state.deckName === ''}>
           <Text style={styles.submitBtnText}>Create</Text>
         </TouchableOpacity>
       </View>
