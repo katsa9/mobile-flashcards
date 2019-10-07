@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-nativ
 import { connect } from 'react-redux'
 import { purple, white, lightPurp, red, green, black } from '../utils/colors'
 import CustomButton from './CustomButton'
-import TextButton from './TextButton';
+import TextButton from './TextButton'
+import ScoreView from './ScoreView'
 
 class QuizView extends Component {
   state = {
@@ -33,18 +34,17 @@ class QuizView extends Component {
     this.nextQuestion(true)
   }
 
-
   onIncorrect = () => {
     this.nextQuestion(false)
   }
 
   nextQuestion = (wasCorrect) => {
-    if(this.state.questionsLeft.length === 0) {
+    if (this.state.questionsLeft.length === 0) {
       //show results
       this.setState((prevState) => ({
         showResults: true,
         totalCorrect: wasCorrect ? prevState.totalCorrect++ : prevState.totalCorrect,
-        count: prevState.count++,
+        count: prevState.count + 1,
         showAnswer: false
       }))
     } else {
@@ -56,7 +56,7 @@ class QuizView extends Component {
         currentQuestion: nextQuestion.question,
         currentAnswer: nextQuestion.answer,
         questionsLeft: questions,
-        count: prevState.count++,
+        count: prevState.count + 1,
         showAnswer: false
       }))
     }
@@ -70,35 +70,42 @@ class QuizView extends Component {
 
   render () {
     const { quizDeck } = this.props
-    const { currentQuestion, currentAnswer, totalCorrect, count, showAnswer } = this.state
-    console.log("Quiz state to render: ", this.state)
+    const { currentQuestion, currentAnswer, totalCorrect, count, showAnswer, showResults } = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>{currentQuestion}</Text>
-        {showAnswer === false && 
-          <TextButton
-          onPress={this.showAnswer}>
-          Show Answer
+        {showResults === false && (<View style={styles.container}>
+          <Text style={styles.answer}>{count}/{quizDeck.questions.length}</Text>
+          <Text style={styles.heading}>{currentQuestion}</Text>
+          {showAnswer === false &&
+            <TextButton
+              onPress={this.showAnswer}>
+              Show Answer
         </TextButton>}
-
-        {showAnswer === true &&
-         <Text style={styles.answer}>{currentAnswer}</Text>}
-        <View style={styles.btnContainer}>
-        <CustomButton
-          btnStyle={styles.correctBtn}
-          textStyle={styles.btnText}
-          onPress={this.onCorrect}
-          disabled={false}>
-          Correct
+          {showAnswer === true &&
+            <Text style={styles.answer}>{currentAnswer}</Text>}
+          <View style={styles.btnContainer}>
+            <CustomButton
+              btnStyle={styles.correctBtn}
+              textStyle={styles.btnText}
+              onPress={this.onCorrect}
+              disabled={false}>
+              Correct
           </CustomButton>
-        <CustomButton
-          btnStyle={styles.incorrectBtn}
-          textStyle={styles.btnText}
-          onPress={this.onIncorrect}
-          disabled={false}>
-          Incorrect
+            <CustomButton
+              btnStyle={styles.incorrectBtn}
+              textStyle={styles.btnText}
+              onPress={this.onIncorrect}
+              disabled={false}>
+              Incorrect
           </CustomButton>
           </View>
+        </View>)}
+        {showResults === true && (
+          <ScoreView 
+          yourScore={totalCorrect}
+          totalQuestions={quizDeck.questions.length}
+          />
+        )}
       </View>
     )
   }

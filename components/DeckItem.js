@@ -64,20 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
-  // startQuizBtn: {
-  //   marginTop: 40,
-  //   backgroundColor: purple,
-  //   padding: 10,
-  //   borderRadius: 7,
-  //   height: 45,
-  //   marginLeft: 40,
-  //   marginRight: 40
-  // },
-  // startQuizBtnText: {
-  //   color: white,
-  //   fontSize: 20,
-  //   textAlign: 'center',
-  // },
 })
 
 function mapStateToProps (state, { navigation }) {
