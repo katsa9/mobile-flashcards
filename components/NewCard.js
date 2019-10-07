@@ -42,7 +42,7 @@ class NewCard extends Component {
     this.props.navigation.goBack()
   }
 
-  render() {
+  render () {
     const { question, answer } = this.state
     return (
       <View style={styles.container}>
@@ -58,11 +58,13 @@ class NewCard extends Component {
           placeholder="Enter your answer"
           placeholderTextColor={lightPurp}
         />
-        <CustomButton
-          onPress={this.onSubmit}
-          disabled={question === '' || answer === ''}>
-          Add Card
-          </CustomButton> 
+        <View style={styles.container}>
+          <CustomButton
+            onPress={this.onSubmit}
+            disabled={question === '' || answer === ''}>
+            Add Card
+          </CustomButton>
+        </View>
       </View>
     )
   }

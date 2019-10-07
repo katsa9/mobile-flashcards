@@ -27,12 +27,10 @@ class NewDeck extends Component {
     this.props.dispatch(addDeck({
       deck
     }))
-
-
     this.toHome()
 
     this.setState(() => ({
-      deckName: null
+      deckName: ''
     }))
   }
 
@@ -50,11 +48,13 @@ class NewDeck extends Component {
           placeholder="Enter your deck name"
           placeholderTextColor={lightPurp}
         />
+        <View style={styles.container}>
         <CustomButton
           onPress={this.onSubmit}
           disabled={this.state.deckName === ''}>
           Create
           </CustomButton>
+        </View>
       </View>
     )
   }
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    alignItems: 'center',
     padding: 15
   },
   heading: {

@@ -31,7 +31,7 @@ class DeckItem extends Component {
         <CustomButton
         onPress={() => this.props.navigation.navigate(
               'StartQuiz',
-              {/* { deckId: key } */}
+              { deckId: display.title }
             )}
           disabled={false}>
           Start Quiz
