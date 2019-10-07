@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
 import { NavigationActions } from 'react-navigation'
 import { addCard } from '../actions'
+import CustomButton from './CustomButton';
 
 class NewCard extends Component {
   state = {
@@ -57,12 +58,11 @@ class NewCard extends Component {
           placeholder="Enter your answer"
           placeholderTextColor={lightPurp}
         />
-        <TouchableOpacity
-          style={styles.submitBtn}
+        <CustomButton
           onPress={this.onSubmit}
           disabled={question === '' || answer === ''}>
-          <Text style={styles.submitBtnText}>Add Card</Text>
-        </TouchableOpacity>
+          Add Card
+          </CustomButton> 
       </View>
     )
   }
@@ -74,20 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     alignItems: "center",
     padding: 15
-  },
-  submitBtn: {
-    marginTop: 40,
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 20,
-    textAlign: 'center',
   },
   textInput: {
     height: 40,

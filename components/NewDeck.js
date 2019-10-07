@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
+import CustomButton from './CustomButton';
 
 class NewDeck extends Component {
 
@@ -26,8 +27,8 @@ class NewDeck extends Component {
     this.props.dispatch(addDeck({
       deck
     }))
-    
-    
+
+
     this.toHome()
 
     this.setState(() => ({
@@ -36,7 +37,7 @@ class NewDeck extends Component {
   }
 
   toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({key: 'NewDeck'}))
+    this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDeck' }))
   }
 
   render () {
@@ -49,12 +50,11 @@ class NewDeck extends Component {
           placeholder="Enter your deck name"
           placeholderTextColor={lightPurp}
         />
-        <TouchableOpacity
-          style={styles.submitBtn}
+        <CustomButton
           onPress={this.onSubmit}
           disabled={this.state.deckName === ''}>
-          <Text style={styles.submitBtnText}>Create</Text>
-        </TouchableOpacity>
+          Create
+          </CustomButton>
       </View>
     )
   }
@@ -73,20 +73,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  submitBtn: {
-    marginTop: 40,
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 20,
-    textAlign: 'center',
   },
   textInput: {
     height: 40,

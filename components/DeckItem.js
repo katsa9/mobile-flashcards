@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { purple, white, lightPurp } from '../utils/colors';
 import DeckPanel from './DeckPanel'
+import CustomButton from './CustomButton';
 
 class DeckItem extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -17,22 +18,24 @@ class DeckItem extends Component {
       <View style={styles.container}>
       <DeckPanel deckId={display.title}/>
       <View style={styles.container}>
-      <TouchableOpacity 
-        style={styles.newCardBtn}
+      <CustomButton
+      btnStyle={styles.newCardBtn}
+      textStyle={styles.newCardBtnText}
         onPress={() => this.props.navigation.navigate(
               'NewCard',
               { deckId: display.title }
-            )}>
-        <Text style={styles.newCardBtnText}>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.startQuizBtn}
-          onPress={() => this.props.navigation.navigate(
+            )}
+          disabled={false}>
+          Add Card
+          </CustomButton> 
+        <CustomButton
+        onPress={() => this.props.navigation.navigate(
               'StartQuiz',
               {/* { deckId: key } */}
-            )}>
-        <Text style={styles.startQuizBtnText}>Start Quiz</Text>
-        </TouchableOpacity>
+            )}
+          disabled={false}>
+          Start Quiz
+          </CustomButton> 
         </View>
       </View>
     )
@@ -61,20 +64,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
-  startQuizBtn: {
-    marginTop: 40,
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40
-  },
-  startQuizBtnText: {
-    color: white,
-    fontSize: 20,
-    textAlign: 'center',
-  },
+  // startQuizBtn: {
+  //   marginTop: 40,
+  //   backgroundColor: purple,
+  //   padding: 10,
+  //   borderRadius: 7,
+  //   height: 45,
+  //   marginLeft: 40,
+  //   marginRight: 40
+  // },
+  // startQuizBtnText: {
+  //   color: white,
+  //   fontSize: 20,
+  //   textAlign: 'center',
+  // },
 })
 
 function mapStateToProps (state, { navigation }) {
