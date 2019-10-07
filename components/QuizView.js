@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import { connect } from 'react-redux'
 import { purple, white, lightPurp, red, green, black } from '../utils/colors'
 import CustomButton from './CustomButton'
@@ -18,6 +18,10 @@ class QuizView extends Component {
   }
 
   componentDidMount () {
+    this.loadFirstQuestion()
+  }
+
+  loadFirstQuestion = () => {
     const { quizDeck } = this.props
     const questions = [...quizDeck.questions]
     const firstQuestion = questions.pop()
@@ -26,7 +30,9 @@ class QuizView extends Component {
       currentQuestion: firstQuestion.question,
       currentAnswer: firstQuestion.answer,
       count: 1,
-      questionsLeft: questions
+      questionsLeft: questions,
+      showResults: false,
+      totalCorrect: 0,
     }))
   }
 
@@ -38,12 +44,23 @@ class QuizView extends Component {
     this.nextQuestion(false)
   }
 
+  backToDeck = () => {
+    this.props.navigation.navigate(
+      'Deck',
+      { deckId: this.props.quizDeck.title }
+    )
+  }
+
+  retakeQuiz = () => {
+    this.loadFirstQuestion()
+  }
+
   nextQuestion = (wasCorrect) => {
     if (this.state.questionsLeft.length === 0) {
       //show results
       this.setState((prevState) => ({
         showResults: true,
-        totalCorrect: wasCorrect ? prevState.totalCorrect++ : prevState.totalCorrect,
+        totalCorrect: wasCorrect ? prevState.totalCorrect + 1 : prevState.totalCorrect,
         count: prevState.count + 1,
         showAnswer: false
       }))
@@ -52,7 +69,7 @@ class QuizView extends Component {
       const questions = [...this.state.questionsLeft]
       const nextQuestion = questions.pop()
       this.setState((prevState) => ({
-        totalCorrect: wasCorrect ? prevState.totalCorrect++ : prevState.totalCorrect,
+        totalCorrect: wasCorrect ? prevState.totalCorrect + 1 : prevState.totalCorrect,
         currentQuestion: nextQuestion.question,
         currentAnswer: nextQuestion.answer,
         questionsLeft: questions,
@@ -104,6 +121,8 @@ class QuizView extends Component {
           <ScoreView 
           yourScore={totalCorrect}
           totalQuestions={quizDeck.questions.length}
+          onRetakeQuiz={this.retakeQuiz}
+          onBackToDeck={this.backToDeck}
           />
         )}
       </View>

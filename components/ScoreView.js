@@ -5,7 +5,7 @@ import CustomButton from './CustomButton'
 
 class ScoreView extends Component {
   render () {
-    const { yourScore, totalQuestions } = this.props
+    const { yourScore, totalQuestions, deckId, onBackToDeck, onRetakeQuiz } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Your Score!</Text>
@@ -15,18 +15,12 @@ class ScoreView extends Component {
           <CustomButton
             btnStyle={styles.retakeBtn}
             textStyle={styles.retakeBtnText}
-            onPress={() => this.props.navigation.navigate(
-              'NewCard',
-              { deckId: display.title }
-            )}
+            onPress={() => onRetakeQuiz()}
             disabled={false}>
             Retake Quiz
           </CustomButton>
           <CustomButton
-            onPress={() => this.props.navigation.navigate(
-              'StartQuiz',
-              { deckId: display.title }
-            )}
+            onPress={() => onBackToDeck()}
             disabled={false}>
             Back to Deck
           </CustomButton>
@@ -40,10 +34,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     padding: 15,
+    alignItems: 'center'
   },
   btnContainer: {
     flex: 1,
     backgroundColor: white,
+  },
+  heading: {
+    paddingTop: 30,
+    marginBottom: 40,
+    color: purple,
+    fontSize: 36,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   retakeBtn: {
     marginTop: 40,
