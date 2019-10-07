@@ -5,6 +5,7 @@ import { purple, white, lightPurp, red, green, black } from '../utils/colors'
 import CustomButton from './CustomButton'
 import TextButton from './TextButton'
 import ScoreView from './ScoreView'
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 class QuizView extends Component {
   state = {
@@ -19,6 +20,8 @@ class QuizView extends Component {
 
   componentDidMount () {
     this.loadFirstQuestion()
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   loadFirstQuestion = () => {

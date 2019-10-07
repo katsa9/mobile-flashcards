@@ -16,9 +16,6 @@ export default function decks (state = {}, action) {
     }
     case ADD_CARD: {
       const { question, answer, deckKey } = action.card
-      console.log("In REDUCER - deck key: ", deckKey)
-      console.log("State: ", state)
-      console.log("State at key: ", state[deckKey])
       return {
         ...state,
         [deckKey]: {
