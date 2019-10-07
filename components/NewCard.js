@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
 import { addCard } from '../actions'
 import CustomButton from './CustomButton';
+import { saveCard } from '../utils/api'
 
 class NewCard extends Component {
   state = {
@@ -30,6 +31,7 @@ class NewCard extends Component {
       answer,
       deckKey
     }))
+    saveCard(deckKey, {question, answer})
     this.backToDeck()
     this.setState(() => ({
       question: '',

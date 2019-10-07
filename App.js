@@ -100,6 +100,7 @@ const MainNavigator = createAppContainer(createStackNavigator({
 }));
 
 export default function App () {
+
   return (
     <Provider store={createStore(reducer, {})}>
       <View style={{ flex: 1 }}>

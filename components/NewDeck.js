@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import CustomButton from './CustomButton';
+import { saveDeck } from '../utils/api'
 
 class NewDeck extends Component {
 
@@ -27,6 +28,7 @@ class NewDeck extends Component {
     this.props.dispatch(addDeck({
       deck
     }))
+    saveDeck(deck)
     this.toDeck()
 
     this.setState(() => ({

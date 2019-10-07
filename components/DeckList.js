@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList, Animated } from 'react-native';
 import DeckPanel from './DeckPanel'
 import { connect } from 'react-redux'
-import { purple, white, lightPurp } from '../utils/colors';
+import { purple, white, lightPurp } from '../utils/colors'
+import { fetchDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
+import { AsyncStorage } from 'react-native'
 
 class DeckList extends Component {
 
@@ -11,7 +14,11 @@ class DeckList extends Component {
   }
 
   componentDidMount () {
-    //Load decks
+    // AsyncStorage.clear();
+    const { dispatch } = this.props
+    console.log("in comp did mount")
+    fetchDecks()
+      .then((decks) => dispatch(receiveDecks(decks)))
   }
 
   goToDeck = (title) => {
