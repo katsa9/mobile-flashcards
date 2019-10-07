@@ -12,15 +12,14 @@ class QuizView extends Component {
     totalCorrect: 0,
     count: 0,
     showAnswer: false,
-    questionsLeft: []
+    questionsLeft: [],
+    showResults: false
   }
 
   componentDidMount () {
     const { quizDeck } = this.props
     const questions = [...quizDeck.questions]
     const firstQuestion = questions.pop()
-    console.log("first q: ", firstQuestion)
-    console.log("questions left: ", questions)
 
     this.setState(() => ({
       currentQuestion: firstQuestion.question,
@@ -31,16 +30,36 @@ class QuizView extends Component {
   }
 
   onCorrect = () => {
-    this.nextQuestion()
+    this.nextQuestion(true)
   }
 
 
   onIncorrect = () => {
-    this.nextQuestion()
+    this.nextQuestion(false)
   }
 
-  nextQuestion = () => {
- //SETSTATE
+  nextQuestion = (wasCorrect) => {
+    if(this.state.questionsLeft.length === 0) {
+      //show results
+      this.setState((prevState) => ({
+        showResults: true,
+        totalCorrect: wasCorrect ? prevState.totalCorrect++ : prevState.totalCorrect,
+        count: prevState.count++,
+        showAnswer: false
+      }))
+    } else {
+      //show next question
+      const questions = [...this.state.questionsLeft]
+      const nextQuestion = questions.pop()
+      this.setState((prevState) => ({
+        totalCorrect: wasCorrect ? prevState.totalCorrect++ : prevState.totalCorrect,
+        currentQuestion: nextQuestion.question,
+        currentAnswer: nextQuestion.answer,
+        questionsLeft: questions,
+        count: prevState.count++,
+        showAnswer: false
+      }))
+    }
   }
 
   showAnswer = () => {

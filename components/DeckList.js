@@ -14,6 +14,10 @@ class DeckList extends Component {
     const { items } = this.props
     return (
       <SafeAreaView style={styles.container}>
+        {items.length === 0 && (
+          <View style={styles.container}>
+        <Text style={styles.noDecks}>You have no decks</Text>
+        </View>)}
         <FlatList
           data={items}
           renderItem={({ item }) => (<TouchableOpacity onPress={() => this.props.navigation.navigate(
@@ -42,7 +46,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
+  noDecks: {
+    color: purple,
+    fontSize: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 60,
+    marginLeft: 60,
+    marginRight: 40
+  }
 })
 
 function mapStateToProps (state) {
