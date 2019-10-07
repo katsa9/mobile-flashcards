@@ -20,7 +20,6 @@ function DeckPanel (props) {
 
 function mapStateToProps (state, { deckId }) {
   const deck = state[deckId]
-  console.log("deck passed in: ", deck)
   return {
     display: deck
   }
@@ -28,7 +27,6 @@ function mapStateToProps (state, { deckId }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flexDirection: 'row',
     marginTop: 15,
     marginHorizontal: 15,
     backgroundColor: purple,
@@ -38,17 +36,12 @@ const styles = StyleSheet.create({
   },
   heading: {
     paddingTop: 8,
-    // paddingBottom: 30,
     color: white,
     fontSize: 28,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   cardCount: {
     color: lightPurp,
     fontSize: 20,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     paddingBottom: 15,
   }
 })

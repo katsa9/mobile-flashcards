@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors'
 import { fetchDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
-import { AsyncStorage } from 'react-native'
 
 class DeckList extends Component {
 
@@ -14,7 +13,6 @@ class DeckList extends Component {
   }
 
   componentDidMount () {
-    // AsyncStorage.clear();
     const { dispatch } = this.props
     console.log("in comp did mount")
     fetchDecks()
@@ -83,9 +81,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps (state) {
-  console.log("state: ", state)
   const items = Object.values(state)
-  console.log("DEcks: ", items)
   return {
     items
   }

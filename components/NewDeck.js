@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
-import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import CustomButton from './CustomButton';
 import { saveDeck } from '../utils/api'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { purple, white, lightPurp } from '../utils/colors';
+import { purple, white } from '../utils/colors';
 import DeckPanel from './DeckPanel'
 import CustomButton from './CustomButton';
 
