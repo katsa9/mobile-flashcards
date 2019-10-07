@@ -27,15 +27,18 @@ class NewDeck extends Component {
     this.props.dispatch(addDeck({
       deck
     }))
-    this.toHome()
+    this.toDeck()
 
     this.setState(() => ({
       deckName: ''
     }))
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDeck' }))
+  toDeck = () => {
+    this.props.navigation.navigate(
+      'Deck',
+      { deckId: this.state.deckName }
+    )
   }
 
   render () {

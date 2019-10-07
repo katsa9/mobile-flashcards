@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, FlatList, Animated } from 'react-native';
 import DeckPanel from './DeckPanel'
 import { connect } from 'react-redux'
 import { purple, white, lightPurp } from '../utils/colors';
 
 class DeckList extends Component {
 
+  state = {
+    bounceValue: new Animated.Value(1),
+  }
+
   componentDidMount () {
     //Load decks
   }
 
+  goToDeck = (title) => {
+    const { bounceValue } = this.state
+    Animated.sequence([
+      Animated.timing(bounceValue, { duration: 200, toValue: 1.04}),
+      Animated.spring(bounceValue, { toValue: 1, friction: 4})
+    ]).start()
+    this.props.navigation.navigate(
+      'Deck',
+      { deckId: title }
+    )
+  }
+
   render () {
     const { items } = this.props
+    const { bounceValue } = this.state
     return (
       <SafeAreaView style={styles.container}>
         {items.length === 0 && (
@@ -20,13 +37,14 @@ class DeckList extends Component {
         </View>)}
         <FlatList
           data={items}
-          renderItem={({ item }) => (<TouchableOpacity onPress={() => this.props.navigation.navigate(
-            'Deck',
-            { deckId: item.title }
-          )}
+          renderItem={({ item }) => (
+            <Animated.View style={{transform: [{scale: bounceValue}]}}>
+            <TouchableOpacity onPress={() => this.goToDeck(item.title)}
             key={item.title}>
             <DeckPanel deckId={item.title} />
-          </TouchableOpacity>)}
+          </TouchableOpacity>
+          </Animated.View>
+          )}
           keyExtractor={item => item.title}
         />
       </SafeAreaView>
