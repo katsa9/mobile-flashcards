@@ -31,7 +31,7 @@ class NewCard extends Component {
       answer,
       deckKey
     }))
-    saveCard(deckKey, {question, answer})
+    saveCard(deckKey,{question, answer})
     this.backToDeck()
     this.setState(() => ({
       question: '',
